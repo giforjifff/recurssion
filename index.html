@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function merge(arr1,arr2){
+            new_arr =[]
+            let i = 0;
+            let j = 0;
+            // console.log(arr1.length)
+            while ((i<arr1.length)&&(j<arr2.length)){
+                // console.log('in main loop')
+                
+                if(arr1[i]<arr2[j]){
+                    // console.log(new_arr)
+                    new_arr.push(arr1[i])
+                    i += 1
+                }
+                if(arr1[i]>=arr2[j]){
+                    // console.log(new_arr)
+                    new_arr.push(arr2[j])
+                    j += 1
+                }
+            }
+            // console.log(i,j)
+            if(i+1 > arr1.length){
+                    while(j<arr2.length){
+                        new_arr.push(arr2[j]);
+                        j+=1
+                    }
+                }
+
+            if(j+1 > arr2.length){
+                    while(i<arr1.length){
+                        new_arr.push(arr1[i]);
+                        i+=1
+                    }
+                }
+
+            return new_arr
+        }
+        // console.log(merge([1,4,5,8,10],[2,3,29,90]))
+
+        function merge_sort(arr){
+            console.log(arr.length)
+            if(arr.length == 1){
+                console.log(arr)
+                return arr
+            }
+            else{
+                console.log(arr)
+                const middleIndex = Math.ceil(arr.length / 2);
+                console.log("This is "+middleIndex+ arr)
+                // console.log((merge_sort(arr.splice(0, middleIndex)), merge_sort(arr.splice(-middleIndex))))
+                return merge(merge_sort(arr.splice(0, middleIndex)),merge_sort(arr.splice(-middleIndex)))
+            }
+        }
+        console.log(merge_sort([3, 2, 1, 13, 8, 5, 0, 1]))
+    </script>
+</body>
+</html>
